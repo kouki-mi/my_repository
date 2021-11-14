@@ -3,7 +3,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Growth;
 use App\Models\Exp;
+use App\Http\Requests\CreateExp;
 use Illuminate\Http\Request;
+
 
 //やった事に関するコントローラ
 class ExpController extends Controller
@@ -14,7 +16,7 @@ class ExpController extends Controller
 
         //計画データに紐づくやった事を取得
         
-        $exps = $current_growth->exps()->get();
+        $exps = $current_growth->exps()->orderBy('updated_at','desc')->get();
 
         return view('exps/index',[
             //'growths' => $growths,
@@ -32,7 +34,7 @@ class ExpController extends Controller
     }
 
     //やった事の作成
-    public function create(Request $request){
+    public function create(CreateExp $request){
         //選択されている計画データを取得
         $current_growth = Growth::find($request->id);
         //データをデータベースに書き込む
@@ -45,7 +47,28 @@ class ExpController extends Controller
         $current_growth->exps()->save($exp);
 
         return redirect()->route('exps.index',[
-            'id' => $exp -> id
+            'id' => $current_growth -> id
+        ]);
+    }
+
+    //やった事の編集ページの表示
+    public function showEditForm(Request $request){
+        $id = $request->id;
+        $current_exp = Exp::find($id);
+        return view('exps/edit',[
+            'current_exp' => $current_exp,
+            'growth_id' => $current_exp->growth_id
+        ]);
+    }
+
+    //やった事の編集
+    public function edit(Request $request){
+        $current_exp = Exp::find($request->id);
+        $current_exp->title = $request->title;
+        $current_exp->content = $request->content;
+        $current_exp->save();
+        return redirect()->route('exps.index',[
+            'id' => $request -> growth_id
         ]);
     }
 

@@ -20,13 +20,20 @@
             戻る
           </a>
 
-        <h2>{{$current_growth->title}}</h2>
-        <h3>Lv.{{$current_growth->exp_point}}</h3>
+        <h3 class="text-center">{{$current_growth->title}} Lv.{{$current_growth->exp_point}}</h3>
         <p>{{$current_growth->content}}</p>
   
         @foreach($exps as $exp)
-            <div class ="panel panel-default">
-              <div class ="panel-heading">{{$exp->title}}</div>
+            <div class ="panel panel-default"> 
+              <div class ="panel-heading">
+                {{$exp->title}}
+              </div>
+              <a href="{{ route('exps.create', ['id' => $exp->id]) }}" class="nes-btn is-error pull-right">
+                  削除
+              </a>
+              <a href="{{ route('exps.edit', ['id' => $exp->id]) }}" class="nes-btn is-warning pull-right">
+                  編集
+              </a>             
               <div class= "panel-body">
                 {{$exp->content}}
               </div>

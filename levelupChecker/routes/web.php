@@ -21,8 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/growths/index', 'App\Http\Controllers\GrowthController@index')->name('growths.index');
 Route::get('/growths/create', 'App\Http\Controllers\GrowthController@showCreateForm')->name('growths.create');
 Route::post('/growths/create', 'App\Http\Controllers\GrowthController@create');
+Route::get('/growths/edit', 'App\Http\Controllers\GrowthController@showEditForm')->name('growths.edit');
+Route::post('/growths/edit', 'App\Http\Controllers\GrowthController@edit');
+
 
 //やった事(exps)関連のルーティング
 Route::get('/exps/index', 'App\Http\Controllers\ExpController@index')->name('exps.index');
 Route::get('/exps/create', 'App\Http\Controllers\ExpController@showCreateForm')->name('exps.create');
 Route::post('/exps/create', 'App\Http\Controllers\ExpController@create');
+Route::get('/exps/edit', 'App\Http\Controllers\ExpController@showEditForm')->name('exps.edit');
+Route::post('/exps/edit', 'App\Http\Controllers\ExpController@edit');
+

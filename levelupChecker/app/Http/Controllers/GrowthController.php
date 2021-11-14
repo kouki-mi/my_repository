@@ -12,7 +12,8 @@ class GrowthController extends Controller
 {
     public function index(){
     //計画データを取得する
-    $growths = Growth::all();
+    //$growths = Growth::all();
+    $growths = Growth::orderBy('updated_at','desc')->get();
     return view('growths/index',['growths'=>$growths]);
     }
 

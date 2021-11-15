@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Growth;
-use App\Http\Requests\CreateGrowth;
+use App\Http\Requests\SendRequest;
 use Illuminate\Http\Request;
 
 
@@ -23,7 +23,7 @@ class GrowthController extends Controller
     }
 
     //計画データの作成
-    public function create(CreateGrowth $request){
+    public function create(SendRequest $request){
         //計画データのモデル
         $growth = new Growth();
 

@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Growth;
 use App\Models\Exp;
-use App\Http\Requests\CreateExp;
+use App\Http\Requests\SendRequest;
 use Illuminate\Http\Request;
 
 
@@ -34,7 +34,7 @@ class ExpController extends Controller
     }
 
     //やった事の作成
-    public function create(CreateExp $request){
+    public function create(SendRequest $request){
         //選択されている計画データを取得
         $current_growth = Growth::find($request->id);
         //データをデータベースに書き込む
@@ -62,7 +62,7 @@ class ExpController extends Controller
     }
 
     //やった事の編集
-    public function edit(Request $request){
+    public function edit(SendRequest $request){
         $current_exp = Exp::find($request->id);
         $current_exp->title = $request->title;
         $current_exp->content = $request->content;

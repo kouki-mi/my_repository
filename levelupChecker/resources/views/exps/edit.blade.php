@@ -15,7 +15,7 @@
         <div class="col col-md-offset-2 col-md-8">
         <a href="{{ route('exps.index', ['id' => $growth_id]) }}" class="nes-btn is-primary pull-right">戻る</a>
           <nav class="panel panel-default">
-            <div class="panel-heading">やった事を編集しよう!</div>
+            <div class="panel-heading">やった事の編集</div>
             <div class="panel-body">
               @if($errors->any())
                 <div class="alert alert-danger">

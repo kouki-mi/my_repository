@@ -20,10 +20,7 @@
         @foreach($growths as $growth)
             <div class ="panel panel-default">
               <div class ="panel-heading">{{$growth->title}}  Lv.{{$growth->exp_point}}</div>
-              <a href="#" class="nes-btn is-error pull-right">
-                  削除
-              </a>
-              <a href="#" class="nes-btn is-warning pull-right">
+              <a href="{{ route('growths.edit', ['id' => $growth->id]) }}" class="nes-btn is-warning pull-right">
                   編集
               </a>
               <div class= "panel-body">

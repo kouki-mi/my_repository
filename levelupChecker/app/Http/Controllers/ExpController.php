@@ -72,4 +72,20 @@ class ExpController extends Controller
         ]);
     }
 
+    //やった事の削除
+    public function delete(Post $request){
+        //やった事データの削除
+        $growth_id = $request->growth_id;
+        $current_exp = Exp::find($request->id);
+        $current_exp->delete();
+
+        //計画データのexp_pointを減らす
+        $current_growth = Growth::find($growth_id);
+        $current_growth->exp_point--;
+        $current_growth->save();
+        return redirect()->route('exps.index',[
+            'id' => $growth_id
+        ]);
+    }
+
 }

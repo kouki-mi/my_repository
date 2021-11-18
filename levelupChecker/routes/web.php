@@ -31,4 +31,5 @@ Route::get('/exps/create', 'App\Http\Controllers\ExpController@showCreateForm')-
 Route::post('/exps/create', 'App\Http\Controllers\ExpController@create');
 Route::get('/exps/edit', 'App\Http\Controllers\ExpController@showEditForm')->name('exps.edit');
 Route::post('/exps/edit', 'App\Http\Controllers\ExpController@edit');
-
+Route::get('/exps/delete', 'App\Http\Controllers\ExpController@showDeleteForm')->name('exps.delete');
+Route::post('/exps/delete', 'App\Http\Controllers\ExpController@delete');

@@ -34,8 +34,26 @@ class GrowthController extends Controller
         $growth->exp_point = 1;
         $growth->save();
         
+        return redirect()->route('growths.index',[]);
+    }
+
+    //計画データ編集ページの表示
+    public function showEditForm(Request $request){
+        $id = $request->id;
+        $current_growth = Growth::find($id);
+        return view('growths/edit',[
+            'current_growth' => $current_growth,
+        ]);
+    }
+
+    //やった事の編集
+    public function edit(SendRequest $request){
+        $current_growth = Growth::find($request->id);
+        $current_growth->title = $request->title;
+        $current_growth->content = $request->content;
+        $current_growth->save();
         return redirect()->route('growths.index',[
-            'id' => $growth -> id
+            'id' => $request -> growth_id
         ]);
     }
 

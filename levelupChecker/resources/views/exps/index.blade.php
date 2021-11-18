@@ -28,9 +28,6 @@
               <div class ="panel-heading">
                 {{$exp->title}}
               </div>
-              <a href="{{ route('exps.create', ['id' => $exp->id]) }}" class="nes-btn is-error pull-right">
-                  削除
-              </a>
               <a href="{{ route('exps.edit', ['id' => $exp->id]) }}" class="nes-btn is-warning pull-right">
                   編集
               </a>             

@@ -6,17 +6,17 @@
 <body>
   <header>
     <nav class="my-navbar">
-      <a class="my-navbar-brand" href="/">level up checker</a>
+      <a class="my-navbar-brand" href="/">ToDo App</a>
     </nav>
   </header>
   <main>
     <div class="container">
       <div class="row">
         <div class="col col-md-offset-2 col-md-8">
-        <a href="{{ route('exps.index', ['id' => $growth_id]) }}" class="nes-btn is-primary pull-right">戻る</a>
-        <a href="{{ route('exps.delete', ['id' => $current_exp->id ,'growth_id' => $growth_id]) }}" class="nes-btn is-error pull-right">削除</a>
+        <a href="{{ route('growths.index')}}" class="nes-btn is-primary pull-right">戻る</a>
+        <a href="#" class="nes-btn is-error pull-right">削除</a>
           <nav class="panel panel-default">
-            <div class="panel-heading">やった事の編集</div>
+            <div class="panel-heading">記録の編集</div>
             <div class="panel-body">
               @if($errors->any())
                 <div class="alert alert-danger">
@@ -27,16 +27,16 @@
                   </ul>
                 </div>
               @endif  
-            <form action="{{ route('exps.edit',['id' => $current_exp->id, 'growth_id' => $growth_id]) }}" method="post">
+            <form action="{{ route('growths.edit',['id' => $current_growth->id])}}" method="post">
                 @csrf
                 <div class="title-form">
                     <label for="title">挑戦する事</label>
-                    <input type="text" class="form-control" name="title" id="title" value = "{{$current_exp->title}}"/>
+                    <input type="text" class="form-control" name="title" id="title" value = "{{$current_growth->title}}"/>
                 </div>
                 <div class="content-form">  
                     <label for="content">概要</label>
                     <textarea class="form-control" name="content" id="content">
-                        {{$current_exp->content}}
+                        {{$current_growth->content}}
                     </textarea>
                 </div>
                 <div class="text-center">

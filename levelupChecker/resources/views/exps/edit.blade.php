@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col col-md-offset-2 col-md-8">
         <a href="{{ route('exps.index', ['id' => $growth_id]) }}" class="nes-btn is-primary pull-right">戻る</a>
-        <a href="{{ route('exps.delete', ['id' => $current_exp->id ,'growth_id' => $growth_id]) }}" class="nes-btn is-error pull-right">削除</a>
+        <a href="{{ route('exps.delete', ['id' => $current_exp->id]) }}" class="nes-btn is-error pull-right">削除</a>
           <nav class="panel panel-default">
             <div class="panel-heading">やった事の編集</div>
             <div class="panel-body">

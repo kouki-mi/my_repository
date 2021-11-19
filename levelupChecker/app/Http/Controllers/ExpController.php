@@ -72,8 +72,17 @@ class ExpController extends Controller
         ]);
     }
 
+    //やった事の削除ページの表示
+    public function showDeleteForm(Request $request){
+        $id = $request->id;
+        $current_exp = Exp::find($id);
+        return view('exps/delete',[
+            'current_exp' => $current_exp,
+        ]);
+    }
+
     //やった事の削除
-    public function delete(Post $request){
+    public function delete(Request $request){
         //やった事データの削除
         $growth_id = $request->growth_id;
         $current_exp = Exp::find($request->id);

@@ -25,9 +25,7 @@
               </a>
               <div class= "panel-body">
                 <p>概要: {{$growth->content}}</p>
-                <div class="list-group">
-                    <a href = "{{ route('exps.index', ['id' => $growth->id]) }}">やった事一覧</a>
-                </div>
+                <a href = "{{ route('exps.index', ['id' => $growth->id]) }}" class = "nes-btn">詳細</a>
               </div>
             </div>
         @endforeach

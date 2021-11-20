@@ -5,9 +5,7 @@
 </head>
 <body>
   <header>
-    <nav class="my-navbar">
-      <a class="my-navbar-brand" href="/">ToDo App</a>
-    </nav>
+  @include('../template/header')
   </header>
   <main>
     <div class="container">
@@ -29,7 +27,7 @@
             <form action="{{ route('exps.create',['id' => $growth_id]) }}" method="post">
                 @csrf
                 <div class="title-form">
-                    <label for="title">挑戦する事</label>
+                    <label for="title">やった事</label>
                     <input type="text" class="form-control" name="title" id="title" />
                 </div>
                 <div class="content-form">  

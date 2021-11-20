@@ -30,11 +30,12 @@ class GrowthController extends Controller
         //データをデータベースに書き込む
         $growth->title = $request->title;
         $growth->content = $request->content;
+        $growth->img = "egg1.png";
         $growth->u_id = 1;
         $growth->exp_point = 1;
         $growth->save();
         
-        return redirect()->route('growths.index',[]);
+        return redirect()->route('growths.index');
     }
 
     //計画データ編集ページの表示
@@ -46,15 +47,28 @@ class GrowthController extends Controller
         ]);
     }
 
-    //やった事の編集
+    //計画データの編集
     public function edit(SendRequest $request){
         $current_growth = Growth::find($request->id);
         $current_growth->title = $request->title;
         $current_growth->content = $request->content;
         $current_growth->save();
-        return redirect()->route('growths.index',[
-            'id' => $request -> growth_id
+        return redirect()->route('growths.index');
+    }
+
+    //計画データ削除ページの表示
+    public function showDeleteForm(Request $request){
+        $id = $request->id;
+        $current_growth = Growth::find($id);
+        return view('growths/delete',[
+            'current_growth' => $current_growth,
         ]);
     }
 
+    //計画データの削除
+    public function delete(Request $request){
+        $current_growth = Growth::find($request->id);
+        $current_growth->delete();
+        return redirect()->route('growths.index');
+    }
 }

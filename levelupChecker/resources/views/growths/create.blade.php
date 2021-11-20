@@ -5,17 +5,15 @@
 </head>
 <body>
   <header>
-    <nav class="my-navbar">
-      <a class="my-navbar-brand" href="/">Level up checker</a>
-    </nav>
+  @include('../template/header')
   </header>
   <main>
     <div class="container">
       <div class="row">
         <div class="col col-md-offset-2 col-md-8">
         <a href="/growths/index" class="nes-btn is-primary pull-right">戻る</a>
-          <nav class="panel panel-default">
-            <div class="panel-heading">目標を追加する</div>
+          <nav class="panel panel-info">
+            <div class="panel-heading">挑戦する事を追加する</div>
             <div class="panel-body">
               @if($errors->any())
                 <div class="alert alert-danger">
@@ -33,7 +31,7 @@
                     <input type="text" class="form-control" name="title" id="title" />
                 </div>
                 <div class="content-form">  
-                    <label for="content">概要</label>
+                    <label for="content">目標</label>
                     <textarea class="form-control" name="content" id="content">
                         
                     </textarea>

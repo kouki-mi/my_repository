@@ -5,9 +5,7 @@
 </head>
 <body>
 <header>
-  <nav class="my-navbar">
-    <a class="my-navbar-brand" href="/">level up checker</a>
-  </nav>
+@include('../template/header')
 </header>
 <main>
     <div class="container">
@@ -21,6 +19,9 @@
           </a>
 
         <h3 class="text-center">{{$current_growth->title}} Lv.{{$current_growth->exp_point}}</h3>
+        <div class = "exp_monster">
+          <img src = "/img/{{$current_growth->img}}"  width="240" height="200">
+        </div>
         <p>{{$current_growth->content}}</p>
   
         @foreach($exps as $exp)

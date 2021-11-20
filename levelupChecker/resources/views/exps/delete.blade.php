@@ -5,9 +5,7 @@
 </head>
 <body>
   <header>
-    <nav class="my-navbar">
-      <a class="my-navbar-brand" href="/">ToDo App</a>
-    </nav>
+  @include('../template/header')
   </header>
   <main>
     <div class="container">

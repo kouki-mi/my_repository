@@ -5,17 +5,15 @@
 </head>
 <body>
   <header>
-    <nav class="my-navbar">
-      <a class="my-navbar-brand" href="/">ToDo App</a>
-    </nav>
+  @include('../template/header')
   </header>
   <main>
     <div class="container">
       <div class="row">
         <div class="col col-md-offset-2 col-md-8">
         <a href="{{ route('growths.index')}}" class="nes-btn is-primary pull-right">戻る</a>
-        <a href="#" class="nes-btn is-error pull-right">削除</a>
-          <nav class="panel panel-default">
+        <a href="{{ route('growths.delete', ['id' => $current_growth->id]) }}" class="nes-btn is-error pull-right">削除</a>
+          <nav class="panel panel-info">
             <div class="panel-heading">記録の編集</div>
             <div class="panel-body">
               @if($errors->any())

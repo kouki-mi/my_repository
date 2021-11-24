@@ -27,11 +27,11 @@
               <form action="{{ route('growths.create') }}" method="post">
                 @csrf
                 <div class="title-form">
-                    <label for="title">挑戦する事</label>
+                    <label for="title">タイトル</label>
                     <input type="text" class="form-control" name="title" id="title" />
                 </div>
                 <div class="content-form">  
-                    <label for="content">目標</label>
+                    <label for="content">概要</label>
                     <textarea class="form-control" name="content" id="content">
                         
                     </textarea>

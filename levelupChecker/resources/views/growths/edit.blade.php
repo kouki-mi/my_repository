@@ -28,7 +28,7 @@
             <form action="{{ route('growths.edit',['id' => $current_growth->id])}}" method="post">
                 @csrf
                 <div class="title-form">
-                    <label for="title">挑戦する事</label>
+                    <label for="title">タイトル</label>
                     <input type="text" class="form-control" name="title" id="title" value = "{{$current_growth->title}}"/>
                 </div>
                 <div class="content-form">  

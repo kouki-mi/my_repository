@@ -27,7 +27,7 @@
             <form action="{{ route('exps.create',['id' => $growth_id]) }}" method="post">
                 @csrf
                 <div class="title-form">
-                    <label for="title">やった事</label>
+                    <label for="title">タイトル</label>
                     <input type="text" class="form-control" name="title" id="title" />
                 </div>
                 <div class="content-form">  

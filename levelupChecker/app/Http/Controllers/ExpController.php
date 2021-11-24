@@ -48,7 +48,7 @@ class ExpController extends Controller
                 break;
             }
             return $img;
-    }
+        }
 
 
     //やった事の作成

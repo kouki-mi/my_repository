@@ -28,4 +28,13 @@ class SendRequest extends FormRequest
             'content' => 'required', 
         ];
     }
+
+    public function attributes(){
+        {
+            return [
+                'title' => 'タイトル',
+                'content' => '概要'
+            ];
+        }
+    }
 }

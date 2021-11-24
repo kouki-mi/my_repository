@@ -28,7 +28,7 @@
             <form action="{{ route('exps.edit',['id' => $current_exp->id, 'growth_id' => $growth_id]) }}" method="post">
                 @csrf
                 <div class="title-form">
-                    <label for="title">やった事</label>
+                    <label for="title">タイトル</label>
                     <input type="text" class="form-control" name="title" id="title" value = "{{$current_exp->title}}"/>
                 </div>
                 <div class="content-form">  

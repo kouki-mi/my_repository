@@ -35,6 +35,11 @@ Route::post('/exps/edit', 'App\Http\Controllers\ExpController@edit');
 Route::get('/exps/delete', 'App\Http\Controllers\ExpController@showDeleteForm')->name('exps.delete')->middleware('auth');
 Route::post('/exps/delete', 'App\Http\Controllers\ExpController@delete');
 
+//ログイン処理
 Auth::routes();
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// googleへのリダイレクト
+Route::get('/auth/google', 'App\Http\Controllers\googleLoginController@redirectToGoogle');
+// 認証後の処理
+Route::get('/auth/google/callback', 'App\Http\Controllers\googleLoginController@handleGoogleCallback');

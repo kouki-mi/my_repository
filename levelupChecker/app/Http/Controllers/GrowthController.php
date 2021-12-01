@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Growth;
 use App\Http\Requests\SendRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 //計画データのコントローラ
 class GrowthController extends Controller
-{
+{   
     public function index(){
-    //計画データを取得する
+    //現在のユーザーの取得
+    $user_id = Auth::id();
+
+    //ユーザーと紐づいた計画データを取得する
     //$growths = Growth::all();
-    $growths = Growth::orderBy('updated_at','desc')->get();
+    $growths = Growth::where('u_id', $user_id)->orderBy('updated_at','desc')->get();
     return view('growths/index',['growths'=>$growths]);
     }
 
@@ -27,11 +30,14 @@ class GrowthController extends Controller
         //計画データのモデル
         $growth = new Growth();
 
+        //現在のユーザーの取得
+        $user_id = Auth::id();
+
         //データをデータベースに書き込む
         $growth->title = $request->title;
         $growth->content = $request->content;
         $growth->img = "egg1.png";
-        $growth->u_id = 1;
+        $growth->u_id = $user_id;
         $growth->exp_point = 1;
         $growth->save();
         

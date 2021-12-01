@@ -16,8 +16,15 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Bootstrap -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Social Buttons for Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.scss') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -79,5 +86,7 @@
             @yield('content')
         </main>
     </div>
+    <!-- googleのapi -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script> 
 </body>
 </html>

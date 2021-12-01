@@ -497,6 +497,47 @@ mark,
   color: #6c757d;
 }
 
+//追記
+.navbar {
+  margin: 2rem 0 2.5rem 0;
+}
+
+.my-navbar {
+  align-items: center;
+  background: #c63;
+  display: flex;
+  height: 6rem;
+  justify-content: space-between;
+  padding: 0 2%;
+  margin-bottom: 3rem;
+}
+
+.my-navbar-brand {
+  font-size: 32px;
+}
+
+.my-navbar-brand,
+.my-navbar-item {
+  color: #ffffff;
+}
+
+.my-navbar-brand:hover,
+a.my-navbar-item:hover {
+  color: #a8fdcc;
+}
+
+.table td:nth-child(2),
+.table td:nth-child(3),
+.table td:nth-child(4) {
+  white-space: nowrap;
+  width: 1px;
+}
+
+.form-control[disabled],
+.form-control[readonly] {
+  background-color: #fff;
+}
+
 code {
   font-size: 87.5%;
   color: #f66d9b;

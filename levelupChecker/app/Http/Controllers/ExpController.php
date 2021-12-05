@@ -3,8 +3,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Growth;
 use App\Models\Exp;
+use App\Models\Pokemon;
 use App\Http\Requests\SendRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PokemonController;
 
 
 //やった事に関するコントローラ
@@ -15,13 +17,17 @@ class ExpController extends Controller
         $current_growth = Growth::find($request->id);
 
         //計画データに紐づくやった事を取得
-        
         $exps = $current_growth->exps()->orderBy('updated_at','desc')->get();
+
+        //ポケモンのデータを取得
+        $p_id = $current_growth->p_id;
+        $pokemon = Pokemon::where('poke_id',$p_id)->first();
 
         return view('exps/index',[
             //'growths' => $growths,
             'current_growth' => $current_growth,
-            'exps' => $exps
+            'exps' => $exps,
+            'pokemon' => $pokemon
         ]);
     }
     
@@ -33,41 +39,28 @@ class ExpController extends Controller
         ]);
     }
 
-    //モンスターの画像を決める処理
-    function setImage(int $exp_point){
-        switch($exp_point){
-            case $exp_point < 4:
-                $img = "egg1.png";
-                break;
-            case $exp_point >= 4 && $exp_point < 7:
-                $img = "egg2.png";
-                break;
-            case $exp_point >= 7:
-                $i = rand(1,37);
-                $img = "monster".$i.".png";
-                break;
-            }
-            return $img;
-        }
-
-
     //やった事の作成
     public function create(SendRequest $request){
         //選択されている計画データを取得
         $current_growth = Growth::find($request->id);
-        //データをデータベースに書き込む
+        //やった事をデータベースに書き込む
         $exp = new Exp();
         $exp->title = $request->title;
         $exp->content = $request->content;
         $exp->u_id = 1;
+
         //計画データを更新する
-        //画像データの設定
-        $img = $current_growth->img;
         $exp_point = $current_growth->exp_point;
-        if(strcmp($img,"egg1.png")==0 || strcmp($img,"egg2.png")==0){
-            $img = $this->setImage($exp_point);
+        //ポケモンIDの設定
+        $poke_id = $current_growth->p_id;
+        //画像が変化する場合
+        if(($exp_point==3 && ($poke_id%3)==1)||($exp_point==8 && ($poke_id%3)==2)){
+            $poke_id++;
+            //PokeAPIを叩いてデータ取得
+            $poke_data = PokemonController::getPokeData($poke_id);
+            if($poke_data !== 0) PokemonController::savePokeData($poke_data);
         }
-        $current_growth->img = $img;
+        $current_growth->p_id = $poke_id;
         $current_growth->exp_point++; 
         $current_growth->save();
         $current_growth->exps()->save($exp);

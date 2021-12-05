@@ -504,7 +504,7 @@ mark,
 
 .my-navbar {
   align-items: center;
-  background: #c63;
+  background: rgb(173, 74, 57);
   display: flex;
   height: 6rem;
   justify-content: space-between;
@@ -536,6 +536,25 @@ a.my-navbar-item:hover {
 .form-control[disabled],
 .form-control[readonly] {
   background-color: #fff;
+}
+
+.box {
+  margin: 2em 0;
+  background: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+  text-align: center;
+}
+.box .box_title {
+  font-size: 1.2em;
+  background: #c63;
+  padding: 4px;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+.box label {
+  padding: 15px 20px;
+  margin: 0;
 }
 
 code {

@@ -19,23 +19,18 @@
           </a>
 
         <h3 class="text-center">{{$current_growth->title}} Lv.{{$current_growth->exp_point}}</h3>
-        <div class = "exp_monster">
-          <img src = "/img/{{$current_growth->img}}"  width="240" height="200">
+        <div class = "pokemon">
+          <img src = "{{$pokemon->img_url}}"  width="500" height="500">
+          <p>{{$pokemon->name}}</p>
         </div>
         <p>{{$current_growth->content}}</p>
   
         @foreach($exps as $exp)
-            <div class ="panel panel-default"> 
-              <div class ="panel-heading">
-                {{$exp->title}}
-              </div>
-              <a href="{{ route('exps.edit', ['id' => $exp->id]) }}" class="nes-btn is-warning pull-right">
-                  編集
-              </a>             
-              <div class= "panel-body">
-                {{$exp->content}}
-              </div>
-            </div>
+          <div class="box">
+            <div class = "box_title">{{$exp->title}}</div>
+            <label>目標: {{$exp->content}}</label>
+            <a href="{{ route('exps.edit', ['id' => $exp->id]) }}" class="nes-btn is-warning pull-right">編集</a>    
+          </div>
         @endforeach
 
     </div>

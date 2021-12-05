@@ -9,26 +9,20 @@
 </header>
 <main>
     <div class="container">
+      <h1>計画一覧</h1>
       <div class = "text-center">
         <a href="create" class="nes-btn is-success">
-            目標を追加する
+            計画を追加する
         </a>
       </div>
   
         @foreach($growths as $growth)
-            <div class ="panel panel-info">
-              <div class ="panel-heading">{{$growth->title}}  Lv.{{$growth->exp_point}}</div>
-              <a href="{{ route('growths.edit', ['id' => $growth->id]) }}" class="nes-btn is-warning pull-right">
-                  編集
-              </a>
-              <div class= "panel-body">
-                <p>目標: {{$growth->content}}</p>
-                <a href = "{{ route('exps.index', ['id' => $growth->id]) }}" class = "nes-btn">詳細</a>
-                <div class = "growth_monster">
-                  <img src = "/img/{{$growth->img}}"  width="120" height="100">
-                </div>
-              </div>
-            </div>
+          <div class="box">
+            <div class = "box_title">{{$growth->title}}  Lv.{{$growth->exp_point}}</div>
+            <label>目標: {{$growth->content}}</label>
+            <a href = "{{ route('exps.index', ['id' => $growth->id]) }}" class = "nes-btn">詳細</a>
+            <a href="{{ route('growths.edit', ['id' => $growth->id]) }}" class="nes-btn is-warning pull-right">編集</a>
+          </div>
         @endforeach
 
     </div>

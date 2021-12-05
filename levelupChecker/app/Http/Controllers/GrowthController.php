@@ -6,6 +6,7 @@ use App\Models\Growth;
 use App\Http\Requests\SendRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PokemonController;
 
 //計画データのコントローラ
 class GrowthController extends Controller
@@ -36,7 +37,17 @@ class GrowthController extends Controller
         //データをデータベースに書き込む
         $growth->title = $request->title;
         $growth->content = $request->content;
-        $growth->img = "egg1.png";
+
+        //ポケモン情報の設定
+        $i = rand(0,5);
+        $poke_id = 1+($i*3);
+        //APIで取得
+        $poke_data = PokemonController::getPokeData($poke_id);
+        if($poke_data!==0){
+            PokemonController::savePokeData($poke_data);
+        }
+        $growth->p_id = $poke_id;
+
         $growth->u_id = $user_id;
         $growth->exp_point = 1;
         $growth->save();

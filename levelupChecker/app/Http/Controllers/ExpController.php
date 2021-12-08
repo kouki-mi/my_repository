@@ -16,8 +16,12 @@ class ExpController extends Controller
         //選択した計画データ
         $current_growth = Growth::find($request->id);
 
-        //計画データに紐づくやった事を取得
-        $exps = $current_growth->exps()->orderBy('updated_at','desc')->get();
+        if($request->mode == "todo"){
+            //計画データに紐づくやった事を取得
+            $exps = $current_growth->exps()->where('finish_flg',0)->orderBy('updated_at','desc')->get();
+        }else{
+            $exps = $current_growth->exps()->where('finish_flg',1)->orderBy('updated_at','desc')->get();
+        }
 
         //ポケモンのデータを取得
         $p_id = $current_growth->p_id;
@@ -27,7 +31,8 @@ class ExpController extends Controller
             //'growths' => $growths,
             'current_growth' => $current_growth,
             'exps' => $exps,
-            'pokemon' => $pokemon
+            'pokemon' => $pokemon,
+            'mode' => $request->mode
         ]);
     }
     
@@ -47,36 +52,24 @@ class ExpController extends Controller
         $exp = new Exp();
         $exp->title = $request->title;
         $exp->content = $request->content;
-        $exp->u_id = 1;
-
-        //計画データを更新する
-        $exp_point = $current_growth->exp_point;
-        //ポケモンIDの設定
-        $poke_id = $current_growth->p_id;
-        //画像が変化する場合
-        if(($exp_point==3 && ($poke_id%3)==1)||($exp_point==8 && ($poke_id%3)==2)){
-            $poke_id++;
-            //PokeAPIを叩いてデータ取得
-            $poke_data = PokemonController::getPokeData($poke_id);
-            if($poke_data !== 0) PokemonController::savePokeData($poke_data);
-        }
-        $current_growth->p_id = $poke_id;
-        $current_growth->exp_point++; 
-        $current_growth->save();
+        $exp->finish_flg = 0;
         $current_growth->exps()->save($exp);
 
         return redirect()->route('exps.index',[
-            'id' => $current_growth -> id
+            'id' => $current_growth -> id,
+            'mode' => 'todo'
         ]);
     }
 
     //やった事の編集ページの表示
     public function showEditForm(Request $request){
         $id = $request->id;
+        $mode = $request->mode;
         $current_exp = Exp::find($id);
         return view('exps/edit',[
             'current_exp' => $current_exp,
-            'growth_id' => $current_exp->growth_id
+            'growth_id' => $current_exp->growth_id,
+            'mode' => $mode
         ]);
     }
 
@@ -87,7 +80,8 @@ class ExpController extends Controller
         $current_exp->content = $request->content;
         $current_exp->save();
         return redirect()->route('exps.index',[
-            'id' => $request -> growth_id
+            'id' => $request -> growth_id,
+            'mode' => 'todo'
         ]);
     }
 
@@ -106,13 +100,44 @@ class ExpController extends Controller
         $growth_id = $request->growth_id;
         $current_exp = Exp::find($request->id);
         $current_exp->delete();
+        $finish_flg = $current_exp->finish_flg;
 
         //計画データのexp_pointを減らす
-        $current_growth = Growth::find($growth_id);
-        $current_growth->exp_point--;
-        $current_growth->save();
+        if($finish_flg==1){
+            $current_growth = Growth::find($growth_id);
+            $current_growth->exp_point--;
+            $current_growth->save();
+        }
         return redirect()->route('exps.index',[
-            'id' => $growth_id
+            'id' => $growth_id,
+            'mode' => 'todo'
+        ]);
+    }
+
+    //完了処理
+    public function finish(Request $request){
+        $growth_id = $request->growth_id;
+        $current_exp = Exp::find($request->id);
+        $current_exp->finish_flg = 1;
+        $current_growth = Growth::find($growth_id);
+        $current_growth->exp_point++;
+        //計画データを更新する
+        $exp_point = $current_growth->exp_point;
+        //ポケモンIDの設定
+        $poke_id = $current_growth->p_id;
+        //画像が変化する場合
+        if(($exp_point==3 && ($poke_id%3)==1)||($exp_point==8 && ($poke_id%3)==2)){
+            $poke_id++;
+            //PokeAPIを叩いてデータ取得
+            $poke_data = PokemonController::getPokeData($poke_id);
+            if($poke_data !== 0) PokemonController::savePokeData($poke_data);
+        }
+        $current_growth->p_id = $poke_id; 
+        $current_growth->save();
+        $current_exp->save();
+        return redirect()->route('exps.index',[
+            'id' => $growth_id,
+            'mode' => 'todo'
         ]);
     }
 }

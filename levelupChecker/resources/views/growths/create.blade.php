@@ -5,7 +5,7 @@
 </head>
 <body>
   <header>
-  @include('../template/header')
+  @include('../template/header', ['mode' => "計画一覧"])
   </header>
   <main>
     <div class="container">

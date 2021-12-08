@@ -523,7 +523,28 @@ mark,
 
 .my-navbar-brand:hover,
 a.my-navbar-item:hover {
-  color: #a8fdcc;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 36px;
+}
+.mode{
+  font-size: 32px;
+  color: #FFF;
+}
+.finish_form{
+  display:inline-block;
+}
+
+.todo_label{
+  font-size: 24px;
+  color:#000;
+  background-color: #FFF;
+}
+
+.finish_label{
+  font-size: 24px;
+  color:#FFF;
+  background-color: #000;
 }
 
 .table td:nth-child(2),
@@ -556,6 +577,7 @@ a.my-navbar-item:hover {
   padding: 15px 20px;
   margin: 0;
 }
+
 
 code {
   font-size: 87.5%;

@@ -34,6 +34,7 @@ Route::get('/exps/edit', 'App\Http\Controllers\ExpController@showEditForm')->nam
 Route::post('/exps/edit', 'App\Http\Controllers\ExpController@edit');
 Route::get('/exps/delete', 'App\Http\Controllers\ExpController@showDeleteForm')->name('exps.delete')->middleware('auth');
 Route::post('/exps/delete', 'App\Http\Controllers\ExpController@delete');
+Route::post('/exps/finish', 'App\Http\Controllers\ExpController@finish')->name('exps.finish')->middleware('auth');
 
 //ログイン処理
 Auth::routes();

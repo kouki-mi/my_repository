@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-@include('../template/head',['title' => "やった事の削除"])
+@include('../template/head',['title' => "計画情報の削除"])
 </head>
 <body>
   <header>
-  @include('../template/header')
+  @include('../template/header', ['mode' => "計画情報の削除"])
   </header>
   <main>
     <div class="container">

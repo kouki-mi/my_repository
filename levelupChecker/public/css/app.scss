@@ -63,7 +63,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #ffc;
+  background-color: #ddd;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -504,7 +504,7 @@ mark,
 
 .my-navbar {
   align-items: center;
-  background: rgb(173, 74, 57);
+  background:#555;
   display: flex;
   height: 6rem;
   justify-content: space-between;
@@ -544,7 +544,11 @@ a.my-navbar-item:hover {
 .finish_label{
   font-size: 24px;
   color:#FFF;
-  background-color: #000;
+  background-color: #999;
+}
+
+.pokemon, .todo_nav, .finish_nav{
+  text-align: center;
 }
 
 .table td:nth-child(2),
@@ -561,13 +565,13 @@ a.my-navbar-item:hover {
 
 .box {
   margin: 2em 0;
-  background: #f1f1f1;
+  background: #ffc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
   text-align: center;
 }
 .box .box_title {
   font-size: 1.2em;
-  background: #c63;
+  background: #aaa;
   padding: 4px;
   color: #FFF;
   font-weight: bold;
@@ -577,7 +581,13 @@ a.my-navbar-item:hover {
   padding: 15px 20px;
   margin: 0;
 }
+.box textarea{
+  height:10em;
+}
 
+.nes-btn{
+  margin-top: 20px;
+}
 
 code {
   font-size: 87.5%;

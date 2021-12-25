@@ -26,7 +26,6 @@ class ExpController extends Controller
         //ポケモンのデータを取得
         $p_id = $current_growth->p_id;
         $pokemon = Pokemon::where('poke_id',$p_id)->first();
-
         return view('exps/index',[
             //'growths' => $growths,
             'current_growth' => $current_growth,
@@ -40,7 +39,9 @@ class ExpController extends Controller
     public function showCreateForm(Request $request){
         $id = $request->id;
         return view('exps/create',[
-            'growth_id' => $id
+            'growth_id' => $id,
+            'action' => 'create',
+            'mode' => 'create'
         ]);
     }
 
@@ -69,7 +70,8 @@ class ExpController extends Controller
         return view('exps/edit',[
             'current_exp' => $current_exp,
             'growth_id' => $current_exp->growth_id,
-            'mode' => $mode
+            'mode' => $mode,
+            'action' => 'edit'
         ]);
     }
 

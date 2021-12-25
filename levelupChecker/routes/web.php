@@ -38,6 +38,7 @@ Route::post('/exps/finish', 'App\Http\Controllers\ExpController@finish')->name('
 
 //ログイン処理
 Auth::routes();
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logOut');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // googleへのリダイレクト

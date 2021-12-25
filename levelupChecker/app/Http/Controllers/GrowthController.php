@@ -23,7 +23,7 @@ class GrowthController extends Controller
 
     //計画データ作成ページの表示
     public function showCreateForm(){
-        return view('growths/create');
+        return view('growths/create',['action'=>'create']);
     }
 
     //計画データの作成
@@ -61,6 +61,7 @@ class GrowthController extends Controller
         $current_growth = Growth::find($id);
         return view('growths/edit',[
             'current_growth' => $current_growth,
+            'action' => 'edit'
         ]);
     }
 

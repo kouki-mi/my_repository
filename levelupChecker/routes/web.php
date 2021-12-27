@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', 'App\Http\Controllers\IntroductionController@index');
 
 //記録データ(growths)関連のルーティング
 Route::get('/growths/index', 'App\Http\Controllers\GrowthController@index')->name('growths.index')->middleware('auth'); //ログイン時のみ閲覧可能
@@ -38,8 +39,6 @@ Route::post('/exps/finish', 'App\Http\Controllers\ExpController@finish')->name('
 
 //ログイン処理
 Auth::routes();
-Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logOut');
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // googleへのリダイレクト
 Route::get('/auth/google', 'App\Http\Controllers\googleLoginController@redirectToGoogle');

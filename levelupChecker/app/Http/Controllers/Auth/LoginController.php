@@ -38,14 +38,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-      /**
-     * ログアウトしたときの画面遷移先
-     */
-    protected function loggedOut(\Illuminate\Http\Request $request)
-    {
-        return redirect(RouteServiceProvider::HOME);
-    }
-
     //以下でgoogleログイン
     public function redirectToGoogle()
     {

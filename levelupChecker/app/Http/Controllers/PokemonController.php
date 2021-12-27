@@ -9,19 +9,20 @@ class PokemonController extends Controller
         //pokeAPIでポケモン情報の取得
         public function getPokeData($poke_id){
             //データベースにあるか確認
-            $poke_data = Pokemon::where('p_id',$poke_id);
-            if(empty($poke_data)){
+            $poke_data = Pokemon::where('poke_id',$poke_id)->first();
+            if(!empty($poke_data)){
+                //既にある場合
                 return 0;
+            }else{
+                $url = 'https://pokeapi.co/api/v2/pokemon/'.$poke_id;
+                $curl = curl_init($url);
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                $r = curl_exec($curl);
+                $data = json_decode($r, true);
+                return $data;
             }
-    
-            $url = 'https://pokeapi.co/api/v2/pokemon/'.$poke_id;
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            $r = curl_exec($curl);
-            $data = json_decode($r, true);
-            return $data;
         }
 
         //ポケモンの情報をデータベースに格納
